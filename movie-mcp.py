@@ -1,4 +1,3 @@
-import os
 from pymongo import MongoClient, ASCENDING, DESCENDING
 from fastmcp import FastMCP
 from typing import List, Optional, Union, Dict, Any
