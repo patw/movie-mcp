@@ -73,24 +73,12 @@ You can download the `sample_mflix` dataset from MongoDB's official resources (e
 
 1. **Clone the repository:**
 ```bash
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
-```
-(Replace `your-username/your-repo-name` with your actual repository details.)
-
-2. **Create a virtual environment (recommended):**
-```bash
-python -m venv venv
-source venv/bin/activate # On Windows: `venv\Scripts\activate`
+git clone https://github.com/patw/movie-mcp.git
+cd movie-mcp
 ```
 
-3. **Install dependencies:**
-Create a `requirements.txt` file in your project root with the following content:
-```
-pymongo
-fastmcp
-```
-Then install them:
+2. **Install dependencies:**
+
 ```bash
 pip install -r requirements.txt
 ```
