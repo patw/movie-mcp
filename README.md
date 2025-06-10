@@ -93,9 +93,9 @@ python movie_tools.py "mongodb://localhost:27017/"
 ```
 Or, if using a MongoDB Atlas connection string:
 ```bash
-python movie_tools.py "mongodb+srv://:@/?retryWrites=true&w=majority"
+python movie_tools.py "mongodb+srv://user:pass@clusterdomain/?retryWrites=true&w=majority"
 ```
-Replace ``, ``, ``, and `` with your actual MongoDB Atlas credentials and cluster details.
+Replace `user`, `pass` and `clusterdomain` with your actual MongoDB Atlas credentials and cluster details.
 
 2. **FastMCP Server:**
 Once running, the script will start a `fastmcp` server. This server exposes the defined tools (e.g., `find_movies`, `count_movies`) over a local HTTP endpoint (by default `http://127.0.0.1:8000/tools`). You can then interact with these tools programmatically, typically from an LLM agent or another Python script.
