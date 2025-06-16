@@ -201,6 +201,7 @@ def find_movies(
     parsed_actors = _parse_stringified_list_arg(actors)
     parsed_directors = _parse_stringified_list_arg(directors)
     parsed_writers = _parse_stringified_list_arg(writers)
+    parsed_projection = _parse_stringified_list_arg(projection_fields)
 
     query = _build_movie_query(
         title, 
@@ -217,8 +218,8 @@ def find_movies(
 
     # Determine projection (which fields to return)
     final_projection: Optional[Dict[str, int]] = None
-    if projection_fields: # User specified fields
-        final_projection = {field: 1 for field in projection_fields}
+    if parsed_projection: # User specified fields (now properly parsed)
+        final_projection = {field: 1 for field in parsed_projection}
     else: # Default fields
         final_projection = {field: 1 for field in DEFAULT_PROJECTION_FIELDS}
     
