@@ -170,7 +170,7 @@ def find_movies(
     sort_by: Optional[str] = "imdb.rating", # Default sort: IMDb rating
     sort_order_asc: bool = False, # Default: False (Descending, e.g., highest rated first)
     limit: int = 10, # Default: 10 results
-    projection_fields: Optional[List[str]] = None # Fields to return
+    projection_fields: Optional[Union[List[str], str]] = None # Fields to return (can be list or JSON string)
 ) -> List[Dict[str, Any]]:
     """
     Finds movies based on a variety of criteria, with options for sorting and limiting results.
@@ -225,10 +225,15 @@ def find_movies(
     
     # Ensure _id is not returned unless explicitly asked for
     if final_projection:
-        # If projection_fields is None (using default), it won't contain "_id"
-        # If projection_fields is provided, check if "_id" is in it
-        if "_id" not in (projection_fields or []): 
-             final_projection["_id"] = 0
+        # Check if "_id" is in the original projection_fields (handling both list and string cases)
+        include_id = False
+        if projection_fields:
+            if isinstance(projection_fields, str):
+                include_id = "_id" in json.loads(projection_fields)
+            else:
+                include_id = "_id" in projection_fields
+        if not include_id:
+            final_projection["_id"] = 0
 
     try:
         cursor = movies_collection.find(query, final_projection)
